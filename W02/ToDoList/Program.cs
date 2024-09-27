@@ -1,10 +1,17 @@
-﻿namespace ReminderApp
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+
+namespace ReminderApp
 {
   class Program
   {
     static void Main(string[] args)
     {
       ReminderManager manager = new ReminderManager();
+      manager.LoadReminders();
+
       bool exit = false;
 
       while (!exit)
@@ -15,7 +22,7 @@
         Console.WriteLine("3. Delete a Reminder");
         Console.WriteLine("4. Exit");
         Console.Write("Choose an option: ");
-        
+
         string? choice = Console.ReadLine();
         if (choice == null)
         {
@@ -42,6 +49,8 @@
             break;
         }
       }
+
+      manager.SaveReminders();
       Console.WriteLine("\nGoodbye!");
     }
 
@@ -77,7 +86,7 @@
     static void DeleteReminder(ReminderManager manager)
     {
       manager.ViewReminders();
-      
+
       Console.Write("Enter the reminder number to delete: ");
       int index;
       while (!int.TryParse(Console.ReadLine(), out index))

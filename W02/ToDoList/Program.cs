@@ -67,18 +67,21 @@ namespace ReminderApp
       string title = Console.ReadLine() ?? "Default Title";
       Console.Write("Enter reminder description: ");
       string description = Console.ReadLine() ?? "Default Description";
-      Console.Write("Enter reminder date (yyyy-mm-dd): ");
-      DateOnly reminderDate;
-      while (!DateOnly.TryParse(Console.ReadLine(), out reminderDate))
-      {
-        Console.Write("Invalid date format. Please enter date (yyyy-mm-dd): ");
-      }
+
+      Console.WriteLine("Enter reminder date components: ");
+      SimpleDate reminderDate = new SimpleDate();
+      Console.Write("Year: ");
+      reminderDate.Year = int.Parse(Console.ReadLine() ?? "0");
+      Console.Write("Month: ");
+      reminderDate.Month = int.Parse(Console.ReadLine() ?? "0");
+      Console.Write("Day: ");
+      reminderDate.Day = int.Parse(Console.ReadLine() ?? "0");
 
       Reminder reminder = new Reminder
       {
         Title = title,
         Description = description,
-        ReminderDate = reminderDate
+        ReminderDate = reminderDate.ToDateOnly()
       };
       manager.AddReminder(reminder);
     }

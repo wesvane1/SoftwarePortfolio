@@ -1,9 +1,9 @@
 # Overview
 
 
-This is a software that prints a simple "Hello World" to the terminal
+This is a simple reminder software, it will save reminders to a file, and remember them when you reload the program. I understand that there are many other softwares
 
-Purpose: Remain proficient in C#
+Purpose: I wanted a way to stay organized in my classes, it is also a way to remain proficient in C#
 
 [Software Demo Video](https://youtu.be/HMHRF_4cZ4g)
 

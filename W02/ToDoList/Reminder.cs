@@ -6,6 +6,6 @@ class Reminder
 
   public override string ToString()
   {
-    return $"Title: {Title}\nDescription: {Description}\nReminder Time: {ReminderDate}";
+    return $"Title: {Title}\nDescription: {Description}\nReminder Date: {ReminderDate}";
   }
 }

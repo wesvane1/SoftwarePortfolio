@@ -11,6 +11,7 @@ namespace ReminderApp
     {
       ReminderManager manager = new ReminderManager();
       manager.LoadReminders();
+      manager.LoadCompletedReminders();
 
       bool exit = false;
 
@@ -19,8 +20,10 @@ namespace ReminderApp
         Console.WriteLine("\nReminder Application");
         Console.WriteLine("1. Add a Reminder");
         Console.WriteLine("2. View Reminders");
-        Console.WriteLine("3. Delete a Reminder");
-        Console.WriteLine("4. Exit");
+        Console.WriteLine("3. Complete Reminder");
+        Console.WriteLine("4. View Complete Reminders");
+        Console.WriteLine("5. Delete a Reminder");
+        Console.WriteLine("6. Exit");
         Console.Write("Choose an option: ");
 
         string? choice = Console.ReadLine();
@@ -39,9 +42,15 @@ namespace ReminderApp
             manager.ViewReminders();
             break;
           case "3":
-            DeleteReminder(manager);
+            CompleteReminder(manager);
             break;
           case "4":
+            manager.ViewCompletedReminders();
+            break;
+          case "5":
+            DeleteReminder(manager);
+            break;
+          case "6":
             exit = true;
             break;
           default:
@@ -51,6 +60,7 @@ namespace ReminderApp
       }
 
       manager.SaveReminders();
+      manager.SaveCompletedReminders(); // Save completed reminders when exiting
       Console.WriteLine("\nGoodbye!");
     }
 
@@ -67,20 +77,27 @@ namespace ReminderApp
         Console.Write("Invalid date format. Please enter date (yyyy-mm-dd): ");
       }
 
-      if (title != null && description != null)
+      Reminder reminder = new Reminder
       {
-        Reminder reminder = new Reminder
-        {
-          Title = title,
-          Description = description,
-          ReminderDate = reminderDate
-        };
-        manager.AddReminder(reminder);
-      }
-      else
+        Title = title,
+        Description = description,
+        ReminderDate = reminderDate
+      };
+      manager.AddReminder(reminder);
+    }
+
+    static void CompleteReminder(ReminderManager manager)
+    {
+      manager.ViewReminders();
+
+      Console.Write("Enter the reminder number to complete: ");
+      int index;
+      while (!int.TryParse(Console.ReadLine(), out index) || index < 1 || index > manager.RemindersCount)
       {
-        throw new ArgumentNullException("Title or Description cannot be null");
+        Console.Write("Invalid input. Please enter a valid number: ");
       }
+
+      manager.CompleteReminder(index - 1);
     }
 
     static void DeleteReminder(ReminderManager manager)
@@ -89,7 +106,7 @@ namespace ReminderApp
 
       Console.Write("Enter the reminder number to delete: ");
       int index;
-      while (!int.TryParse(Console.ReadLine(), out index))
+      while (!int.TryParse(Console.ReadLine(), out index) || index < 1 || index > manager.RemindersCount)
       {
         Console.Write("Invalid input. Please enter a valid number: ");
       }

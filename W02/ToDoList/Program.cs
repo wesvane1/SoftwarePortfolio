@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
+﻿
 
 namespace ReminderApp
 {
@@ -60,7 +57,7 @@ namespace ReminderApp
       }
 
       manager.SaveReminders();
-      manager.SaveCompletedReminders(); // Save completed reminders when exiting
+      manager.SaveCompletedReminders();
       Console.WriteLine("\nGoodbye!");
     }
 

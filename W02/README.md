@@ -23,4 +23,4 @@ Make sure that you are in the correct directory, then enter "dotnet run" into th
 
 # Troubleshooting
 
-If that does not work try running dotnet --version to ensure that you have dotnet installed. If you do not have dotnet refer to [this](https://learn.microsoft.com/en-us/dotnet/core/install/) link.
+Ensure the directory that you are in is correct (W02/ToDoList). If that does not work try running dotnet --version to ensure that you have dotnet installed. If you do not have dotnet refer to [this](https://learn.microsoft.com/en-us/dotnet/core/install/) link.

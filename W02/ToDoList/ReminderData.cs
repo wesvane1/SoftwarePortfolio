@@ -1,4 +1,5 @@
 // Union-like struct to simulate handling multiple types
+// The Reminder Data struct does nothing, simply shows that you can create a union in C#
 struct ReminderData
 {
   public string Title;

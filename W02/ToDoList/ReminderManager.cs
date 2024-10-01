@@ -76,7 +76,12 @@ class ReminderManager
 
   public void LoadReminders()
   {
-    if (File.Exists(FileName))
+    if (!File.Exists(FileName))
+    {
+      File.WriteAllText(FileName, string.Empty);
+    }
+
+    else
     {
       using (StreamReader reader = new StreamReader(FileName))
       {
@@ -95,7 +100,11 @@ class ReminderManager
 
   public void LoadCompletedReminders()
   {
-    if (File.Exists(CompleteFileName))
+    if (!File.Exists(CompleteFileName))
+    {
+      File.WriteAllText(CompleteFileName, string.Empty);
+    }
+    else
     {
       using (StreamReader reader = new StreamReader(CompleteFileName))
       {
